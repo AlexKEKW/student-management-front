@@ -1,25 +1,47 @@
-<div>
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
   <h2>Student List</h2>
-  <table>
+  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
     <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Branch</th>
-      <th>Actions</th>
+      <th scope="col" class="px-6 py-3">
+        Name
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Email
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Branch
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Actions
+      </th>
     </tr>
-    @for (student of students; track $index) {
-      <tr>
-        <td>{{ student.studentName }}</td>
-        <td>{{ student.studentEmail }}</td>
-        <td>{{ student.studentBranch }}</td>
-        <td>
-          <button (click)="deleteStudent(student.studentId)">Delete</button>
-          <a [routerLink]="['/edit', student.studentId]">Edit</a>
-        </td>
-      </tr>
-    } @empty {
-      <h1>EMPTY LIST</h1>
-    }
+    </thead>
+    <tbody>
+      @for (student of students; track $index) {
+        <tr
+          class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            {{ student.studentName }}
+          </th>
+          <td class="px-6 py-4">
+            {{ student.studentEmail }}
+          </td>
+          <td class="px-6 py-4">
+            {{ student.studentBranch }}
+          </td>
+          <td class="px-6 py-4">
+            <button (click)="deleteStudent(student.studentId)">Delete</button>
+            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+               [routerLink]="['/edit', student.studentId]">
+              Edit
+            </a>
+          </td>
+        </tr>
+      } @empty {
+        <H1>EMPTY LIST</H1>
+      }
+    </tbody>
   </table>
   <a routerLink="/create">Create New Student</a>
 </div>
